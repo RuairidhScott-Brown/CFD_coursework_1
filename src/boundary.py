@@ -160,14 +160,38 @@ for i in range(number_of_data_points):
             T[i][j] = z[i-1][j-1]
 print(T)
 
-plt.contour(xx, yy, T, 20,cmap='RdGy')
+#plt.contour(xx, yy, T, 20,)
 
+fig, ax = plt.subplots(1,1)
+CS = ax.contourf(xx, yy, T, cmap = "viridis")
+ax.clabel(CS, colors = "k", inline=False, fontsize=10)
+ax.set_xlabel('x', fontsize = 20)
+ax.set_ylabel('y', fontsize= 20)
+ax.tick_params(axis='x', labelsize=14)
+ax.tick_params(axis='y', labelsize=14)
+plt.colorbar(CS)
 
 fig = plt.figure()
 ax = plt.axes(projection='3d')
-ax.plot_surface(xx, yy, T, rstride=1, cstride=1,
+CV = ax.plot_surface(xx, yy, T, rstride=1, cstride=1,
                 cmap='viridis', edgecolor='none')
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-ax.set_zlabel('z')
+ax.set_xlabel('x', fontsize= 20)
+ax.set_ylabel('y', fontsize= 20)
+ax.set_zlabel('T', fontsize= 20)
+ax.tick_params(axis='x', labelsize=14)
+ax.tick_params(axis='y', labelsize=14)
+plt.colorbar(CV)
+
+
+
+
+## Gauss Sediel
+
+Lower = np.tril(Full_matrix, k=-1)
+Upper = np.triu(Full_matrix, k=1)
+Diag = Full_matrix - Lower - Upper
+
+
+
+for
 plt.show()
